@@ -1,0 +1,6 @@
+name = Shortcode entityform ctools
+description = Creates ctools link form creating new entityform in modal
+package = Shortcode
+core = 7.x
+dependencies[] = shortcode
+dependencies[] = entityform_ctools

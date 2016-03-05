@@ -1,0 +1,47 @@
+<?php
+/**
+ * @file
+ * Main code.
+ *
+ * @author
+ * Name: Bool Boost
+ * Web: http://boolboost.com
+ * Email: bool.boost@gmail.com
+ */
+ 
+/**
+ * Implements hook_shortcode_info().
+ */
+function shortcode_entityform_ctools_shortcode_info() {
+  $shortcodes['entityform_ctools_add_link'] = array(
+    'title' => t('Ctools link form'),
+    'description' => t('Creates ctools link form creating new entityform in modal.'),
+    'process callback' => 'shortcode_entityform_ctools__add_link__process'
+  );
+
+  return $shortcodes;
+}
+
+/**
+ * Render Ctools link form
+ */
+function shortcode_entityform_ctools__add_link__process($attributes, $text) {
+  $attributes = array(
+    'theme' => '',
+    'options' => array()
+  ) + $attributes;
+
+  if (!empty($attributes['text']) && !empty($attributes['name'])) {
+    return entityform_ctools_add_link($attributes['text'], $attributes['name'], $attributes['theme'], $attributes['options']);
+  }
+
+  return '';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function shortcode_entityform_ctools_preprocess_html(&$variables) {
+  _entityform_ctools_include_modal();
+}
+
